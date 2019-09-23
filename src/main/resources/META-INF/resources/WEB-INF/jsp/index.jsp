@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <title>Acronym / Mnemonic Generator</title>
   </head>
@@ -34,7 +34,7 @@
               </tr>
             </table>
 
-            <button class="btn orange-button" name="generate" id="generate" value="generate"> Generate </button>
+            <button type="button" class="btn orange-button" name="generate" id="generate"> Generate </button>
           </form>
         </div>
       </div>
@@ -52,10 +52,36 @@
           rows++;
           $('#dynamic-field').append('<tr id="row'+rows+'"><td><input type="text" name="word" id="word" class="form-control word_list" placeholder="Word"></td><td><button type="button" class="btn btn_danger btn_remove" name="remove" id="'+rows+'">X</button></td></tr>');
         });
-       $(document).on('click', '.btn_remove', function() {
-         var button_id = $(this).attr("id");
-         $("#row"+button_id+"").remove();
-       });
+        $(document).on('click', '.btn_remove', function() {
+          var button_id = $(this).attr("id");
+          $("#row"+button_id+"").remove();
+        });
+        $('#generate').click(function() {
+          var words = new Array();
+          
+          $("input").each(function(index) {
+            if($(this).val() != "")
+            {
+              words.push($(this).val());
+            }
+            console.log($(this).val());
+          });
+
+          console.log(words);
+
+          $.ajax({ 
+            url:"/api/",
+            type:"POST", 
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(words),
+            async: false,
+            cache: false,
+            processData:false,
+            success: function(resposeJsonObject){
+              alert(resposeJsonObject);
+            }
+          });
+        });
       });
     </script>
   </body>

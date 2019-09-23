@@ -1,9 +1,10 @@
 package com.feliser.acronym.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@RestController
+@Controller
 public class AcronymController {
 	
 	@GetMapping("/")
