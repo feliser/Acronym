@@ -57,12 +57,12 @@
           $("#row"+button_id+"").remove();
         });
         $('#generate').click(function() {
-          var words = new Array();
+          var words = new String();
           
           $("input").each(function(index) {
             if($(this).val() != "")
             {
-              words.push($(this).val());
+              words = words + $(this).val() + "\n";
             }
             console.log($(this).val());
           });
@@ -72,10 +72,11 @@
           $.ajax({ 
             url:"/api/",
             type:"POST", 
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(words),
+            contentType: "text/plain",
+            data: words,
             async: false,
             cache: false,
+            accept: "application/json",
             processData:false,
             success: function(resposeJsonObject){
               alert(resposeJsonObject);

@@ -1,19 +1,18 @@
 package com.feliser.acronym.controllers;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Map;
 
-import models.WordsModel;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ApiController 
 {
-	@PostMapping("/api/")
-	public ResponseEntity<WordsModel> getAcronym(@RequestBody WordsModel words)
+	@RequestMapping(value = "/api", method = RequestMethod.POST,consumes = "text/plain")
+	public String getAcronym(@RequestBody String body)
 	{
-		return new ResponseEntity<WordsModel>(words, HttpStatus.OK);
+		return body;
 	}
 }
