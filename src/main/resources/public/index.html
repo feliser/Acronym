@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
 
     <title>Acronym / Mnemonic Generator</title>
@@ -57,31 +58,29 @@
           $("#row"+button_id+"").remove();
         });
         $('#generate').click(function() {
-          var words = new String();
+          var words = new Array();
           
           $("input").each(function(index) {
             if($(this).val() != "")
             {
-              words = words + $(this).val() + "\n";
+              words.push($(this).val());
             }
             console.log($(this).val());
           });
+          
+          var wordsJSON = "{\"request\": " + JSON.stringify(words) + "}";
+          console.log(wordsJSON);
 
-          console.log(words);
-
-          $.ajax({ 
-            url:"/api/",
-            type:"POST", 
-            contentType: "text/plain",
-            data: words,
-            async: false,
-            cache: false,
-            accept: "application/json",
-            processData:false,
-            success: function(resposeJsonObject){
-              alert(resposeJsonObject);
-            }
-          });
+          var xmlhttp = new XMLHttpRequest();
+		  xmlhttp.onreadystatechange = function() {
+  		  	if (this.readyState == 4 && this.status == 200) {
+          		var response = JSON.parse(this.responseText);
+          		alert(response[0]);
+          	}
+		  };
+		  xmlhttp.open("POST", "api", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/json");
+		  xmlhttp.send(wordsJSON);
         });
       });
     </script>
