@@ -8,5 +8,4 @@ public class AcronymApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AcronymApplication.class, args);
 	}
-
 }
