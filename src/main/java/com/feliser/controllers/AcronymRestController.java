@@ -16,7 +16,7 @@ public class AcronymRestController
 	@Autowired
 	AcronymService acronymService;
 	
-	@PostMapping("/api")
+	@PostMapping("/generate")
 	@ResponseBody
 	public AcronymResponseModel createAcronym(@RequestBody AcronymRequestModel acronymRequest)
 	{

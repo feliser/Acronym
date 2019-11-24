@@ -1,14 +1,16 @@
-body {
-
+html {
+  overflow-y: scroll;
 }
 
 .header-card {
   padding: 20px;
-  border-radius: 0px;
-  transform: skewX(0deg);
   border-radius: 15px;
   background-image: linear-gradient(orange, rgb(255, 140, 0));
   border-width: 0px;
+}
+
+.max-width {
+  width: 100%
 }
 
 .header-card h1 {
@@ -19,8 +21,15 @@ body {
 }
 
 .header-container {
-  padding: 20px;
-  background-color: #E3E3E3;
+  padding: 40px;
+}
+
+td {
+  white-space:nowrap;
+}
+
+#response-card {
+  visibility: hidden;
 }
 
 .body-card-container {
@@ -38,16 +47,19 @@ body {
   background-color: #F3F5F8;
   border-width: 2px;
   border-radius: 7px;
+  margin-bottom: 40px;
 }
 
 .orange-button {
   background-image: linear-gradient(orange, rgb(255, 140, 0));
   color: white;
   font-family: "Roboto", sans-serif;
+  border-radius: 15px;
 }
 
 .btn_remove {
   background-image: linear-gradient(rgb(255, 0, 0), rgb(230, 0, 0));
   color: white;
   font-family: "Roboto", sans-serif;
+  border-radius: 15px;
 }

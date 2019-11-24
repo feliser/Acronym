@@ -20,13 +20,13 @@
     <div class="container-fluid text-center body-container">
       <div class="container text-center body-card-container">
         <div class="card body-card">
-          <h1> Input </h1>
+          <h1> Add Terms </h1>
 
           <form name="word-form" id="word-form" onsubmit="return validate();">
             <table class="table" id="dynamic-field">
               <tr>
-                <td>
-                  <input type="text" name="word" id="word" class="form-control word_list" placeholder="Word">
+                <td class="max-width">
+                  <input type="text" name="word" id="word" class="form-control word_list" placeholder="Term">
                 </td>
 
                 <td>
@@ -38,9 +38,13 @@
             <button type="button" class="btn orange-button" name="generate" id="generate"> Generate </button>
           </form>
         </div>
+        <div class="card body-card" id="response-card">
+          <h1>Best Suggestions</h1>
+          <p id="response">gerg</p>
+        </div>
       </div>
     </div>
-
+    
     <!-- jQuery, popper, bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -51,36 +55,35 @@
         var rows = 1;
         $('#add').click(function() {
           rows++;
-          $('#dynamic-field').append('<tr id="row'+rows+'"><td><input type="text" name="word" id="word" class="form-control word_list" placeholder="Word"></td><td><button type="button" class="btn btn_danger btn_remove" name="remove" id="'+rows+'">X</button></td></tr>');
+          $('#dynamic-field').append('<tr id="row'+rows+'"><td><input type="text" name="word" id="word" class="form-control word_list" placeholder="Term"></td><td><button type="button" class="btn btn_danger btn_remove" name="remove" id="'+rows+'">Remove</button></td></tr>');
         });
         $(document).on('click', '.btn_remove', function() {
           var button_id = $(this).attr("id");
           $("#row"+button_id+"").remove();
         });
         $('#generate').click(function() {
-          var words = new Array();
-          
+          document.getElementById("response").textContent = "";
+          var words = new Array(); 
           $("input").each(function(index) {
-            if($(this).val() != "")
-            {
+            if($(this).val() != "") {
               words.push($(this).val());
             }
-            console.log($(this).val());
-          });
-          
+          });          
           var wordsJSON = "{\"request\": " + JSON.stringify(words) + "}";
-          console.log(wordsJSON);
-
           var xmlhttp = new XMLHttpRequest();
-		  xmlhttp.onreadystatechange = function() {
+		      xmlhttp.onreadystatechange = function() {
   		  	if (this.readyState == 4 && this.status == 200) {
-          		var response = JSON.parse(this.responseText);
-          		alert(response[0]);
+          		var object = JSON.parse(this.responseText);
+              $('#response-card').css('visibility', 'visible');
+              object.response.forEach(function (item, index) {
+                $('#response').append(item + "<br />");
+                console.log(item);
+              });
           	}
-		  };
-		  xmlhttp.open("POST", "api", true);
-		  xmlhttp.setRequestHeader("Content-type", "application/json");
-		  xmlhttp.send(wordsJSON);
+		      };
+		      xmlhttp.open("POST", "generate", true);
+		      xmlhttp.setRequestHeader("Content-type", "application/json");
+		      xmlhttp.send(wordsJSON);
         });
       });
     </script>
