@@ -1,2 +1,2 @@
 # Acronym
-Acronym / Mnemonic Generator
+Acronym Generator
