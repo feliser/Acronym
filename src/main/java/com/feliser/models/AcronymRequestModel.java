@@ -9,7 +9,7 @@ public class AcronymRequestModel {
 		return request;
 	}
 
-	public void setRequest(List<String> test) {
-		this.request = test;
+	public void setRequest(List<String> request) {
+		this.request = request;
 	}
 }

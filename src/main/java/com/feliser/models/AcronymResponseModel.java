@@ -3,18 +3,17 @@ package com.feliser.models;
 import java.util.List;
 
 public class AcronymResponseModel {
-	List<String> response;
+	List<Acronym> response;
 
-	public AcronymResponseModel(List<String> response) {
+	public AcronymResponseModel(List<Acronym> response) {
 		this.response = response;
 	}
 
-	public List<String> getResponse() {
+	public List<Acronym> getResponse() {
 		return response;
 	}
 
-	public void setResponse(List<String> response) {
+	public void setResponse(List<Acronym> response) {
 		this.response = response;
 	}
-
 }
