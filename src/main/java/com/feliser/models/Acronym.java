@@ -26,9 +26,4 @@ public class Acronym {
 	public void setBoldIndices(List<Integer> boldIndices) {
 		this.boldIndices = boldIndices;
 	}
-
-	@Override
-	public String toString() {
-		return String.format(word + " indxs: " + boldIndices.toString());
-	}
 }

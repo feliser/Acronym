@@ -34,7 +34,7 @@ public class AcronymService {
 				boldIndices.clear(); // Get list ready for next word
 				for (int i = 0; i < word.length(); i++) {
 					if (term + 1 < terms.size()) { // if letter i of word is contained in the next term
-						if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1) {
+						if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1 ) {
 							searchIndex = terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) + 1;
 							boldIndices.add(letterIndex + searchIndex - 1); // stores the index of character that matched acronym
 							letterIndex += terms.get(term + 1).length();
