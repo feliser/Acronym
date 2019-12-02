@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -18,10 +17,10 @@ public class AcronymService {
 		return new AcronymResponseModel(generateAcronyms(acronymRequest.request));
 	}
 
-	public List<Acronym> generateAcronyms(List<String> terms) {
+	public ArrayList<Acronym> generateAcronyms(ArrayList<String> terms) {
 		// Acronym class contains the word and letters to bold on front end
-		List<Acronym> acronyms = new ArrayList<Acronym>();
-		List<Integer> boldIndices = new ArrayList<Integer>(); 
+		ArrayList<Acronym> acronyms = new ArrayList<Acronym>();
+		ArrayList<Integer> boldIndices = new ArrayList<Integer>(); 
 		// Load words list
 		BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("words/corncob_caps.txt")));
 		String word;
@@ -53,12 +52,13 @@ public class AcronymService {
 						} else { break; }
 					} else { break; }
 					if (i == word.length() - 1 && term == terms.size() - 1) { // acronym success
-						acronyms.add(new Acronym(word, boldIndices));
+						acronyms.add(new Acronym(word, new ArrayList<Integer>(boldIndices)));
 						break;
 					}
 				}
 			}
 		} catch (IOException e) { e.printStackTrace(); }
+		
 		return acronyms;
 	}
 }

@@ -1,15 +1,15 @@
 package com.feliser.models;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class AcronymRequestModel {
-	public List<String> request;
+	public ArrayList<String> request;
 
-	public List<String> getRequest() {
+	public ArrayList<String> getRequest() {
 		return request;
 	}
 
-	public void setRequest(List<String> request) {
+	public void setRequest(ArrayList<String> request) {
 		this.request = request;
 	}
 }

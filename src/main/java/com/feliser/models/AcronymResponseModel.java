@@ -1,11 +1,12 @@
 package com.feliser.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AcronymResponseModel {
-	List<Acronym> response;
+	public ArrayList<Acronym> response;
 
-	public AcronymResponseModel(List<Acronym> response) {
+	public AcronymResponseModel(ArrayList<Acronym> response) {
 		this.response = response;
 	}
 
@@ -13,7 +14,7 @@ public class AcronymResponseModel {
 		return response;
 	}
 
-	public void setResponse(List<Acronym> response) {
+	public void setResponse(ArrayList<Acronym> response) {
 		this.response = response;
 	}
 }

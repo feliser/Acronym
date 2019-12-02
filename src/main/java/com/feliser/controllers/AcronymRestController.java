@@ -20,6 +20,8 @@ public class AcronymRestController
 	@ResponseBody
 	public AcronymResponseModel createAcronym(@RequestBody AcronymRequestModel acronymRequest)
 	{
-		return acronymService.createAcronym(acronymRequest);
+		AcronymResponseModel arm = acronymService.createAcronym(acronymRequest);
+		System.out.println(arm.response.get(0).getBoldIndices().toString());
+		return arm;
 	}
 }
