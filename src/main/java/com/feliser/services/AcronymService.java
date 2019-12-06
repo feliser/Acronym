@@ -35,20 +35,20 @@ public class AcronymService {
 					if (term + 1 < terms.size()) { // if letter i of word is contained in the next term
 						if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1 ) {
 							searchIndex = terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) + 1;
-							boldIndices.add(letterIndex + searchIndex - 1); // stores the index of character that matched acronym
+							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); // stores the index of character that matched acronym
 							letterIndex += terms.get(term + 1).length();
 							term++;
 						}
 						else if (term > -1) { // if letter i of word is contained in the term starting from searchIndex
 							if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1 && term > -1) {
 								searchIndex = terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) + 1;
-								boldIndices.add(letterIndex + searchIndex - 1); // stores the index of character that matched acronym
+								boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); // stores the index of character that matched acronym
 							} else { break; }
 						} else { break; }
 					} else if (term > -1) {
 						if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1 && term > -1) {
 							searchIndex = terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) + 1;
-							boldIndices.add(letterIndex + searchIndex - 1); // stores the index of character that matched acronym
+							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); // stores the index of character that matched acronym
 						} else { break; }
 					} else { break; }
 					if (i == word.length() - 1 && term == terms.size() - 1) { // acronym success

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:700">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400"> -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -44,7 +44,7 @@
         </div>
         <div class="card body-card" id="response-card">
           <h1>Best Suggestions</h1>
-          <p id="response">gerg</p>
+          <table class="table" id="response"></table>
         </div>
       </div>
     </div>
@@ -55,6 +55,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
+      var words = new Array();
+      var request = '';
+
+      function setCharAt(str,index,chr) {
+        console.log(str + " " + index + " " + chr);
+        if(index > str.length-1) return str;
+        return str.substr(0,index) + chr.toUpperCase() + str.substr(index+1);
+      }
+
       $(document).ready(function() {
         var rows = 1;
         $('#add').click(function() {
@@ -67,10 +76,11 @@
         });
         $('#generate').click(function() {
           document.getElementById("response").textContent = "";
-          var words = new Array(); 
+          request = "";
           $("input").each(function(index) {
             if($(this).val() != "") {
               words.push($(this).val());
+              request += $(this).val() + " ";
             }
           });          
           var wordsJSON = "{\"request\": " + JSON.stringify(words) + "}";
@@ -79,8 +89,17 @@
   		  	if (this.readyState == 4 && this.status == 200) {
           		var object = JSON.parse(this.responseText);
               $('#response-card').css('visibility', 'visible');
+              var bold = document.createElement
               object.response.forEach(function (item, index) {
-                $('#response').append(item + "<br />");
+                var tr = document.createElement('tr');
+                tr.appendChild( document.createElement('td') );
+                tr.appendChild( document.createElement('td') );
+
+                tr.cells[0].appendChild( document.createTextNode(item.word));
+                tr.cells[0].appendChild( getBreakdown(item.boldIndices));
+
+                var table = document.getElementById('response');
+                table.appendChild(tr);
                 console.log(item);
               });
           	}
@@ -90,6 +109,18 @@
 		      xmlhttp.send(wordsJSON);
         });
       });
+
+      function getBreakdown(boldIndices) {
+        var element = document.createElement('p');
+        var response = request;
+        boldIndices.forEach(function (item, index) {
+          response = setCharAt(response, item + (7 * index), '<b>' + response.charAt(item + (7 * index)) + '</b>');
+          console.log(response);
+        });
+        element.innerHTML = response;
+        return element;
+      }
+
     </script>
   </body>
 </html>
