@@ -18,47 +18,42 @@ public class AcronymService {
 	}
 
 	public ArrayList<Acronym> generateAcronyms(ArrayList<String> terms) {
-		// Acronym class contains the word and letters to bold on front end
 		ArrayList<Acronym> acronyms = new ArrayList<Acronym>();
 		ArrayList<Integer> boldIndices = new ArrayList<Integer>(); 
-		// Load words list
 		BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("words/corncob_caps.txt")));
 		String word;
-
 		try {
-			while ((word = br.readLine()) != null) { // Loop through words
+			while ((word = br.readLine()) != null) {
 				int term = -1;
 				int searchIndex = 0;
 				int letterIndex = 0;
-				boldIndices.clear(); // Get list ready for next word
+				boldIndices.clear();
 				for (int i = 0; i < word.length(); i++) {
-					if (term + 1 < terms.size()) { // if letter i of word is contained in the next term
-						if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1 ) {
+					if (term + 1 < terms.size()) {
+							if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1 ) {
 							searchIndex = terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) + 1;
-							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); // stores the index of character that matched acronym
+							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); 
 							letterIndex += terms.get(term + 1).length();
 							term++;
-						}
-						else if (term > -1) { // if letter i of word is contained in the term starting from searchIndex
+						} else if (term > -1) {
 							if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1 && term > -1) {
 								searchIndex = terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) + 1;
-								boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); // stores the index of character that matched acronym
+								boldIndices.add(letterIndex + searchIndex - 1 + (term + 1) - (terms.get(term).length() + 1));
 							} else { break; }
 						} else { break; }
 					} else if (term > -1) {
-						if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1 && term > -1) {
+						if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1) {
 							searchIndex = terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) + 1;
-							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); // stores the index of character that matched acronym
+							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1) - (terms.get(term).length() + 1));
 						} else { break; }
 					} else { break; }
-					if (i == word.length() - 1 && term == terms.size() - 1) { // acronym success
+					if (i == word.length() - 1 && term == terms.size() - 1) {
 						acronyms.add(new Acronym(word, new ArrayList<Integer>(boldIndices)));
 						break;
 					}
 				}
 			}
-		} catch (IOException e) { e.printStackTrace(); }
-		
+		} catch (Exception e) { e.printStackTrace(); }
 		return acronyms;
 	}
 }
