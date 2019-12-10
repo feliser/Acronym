@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -94,10 +94,10 @@
               object.response.forEach(function (item, index) {
                 var tr = document.createElement('tr');
                 tr.appendChild( document.createElement('td') );
-                tr.appendChild( document.createElement('td') );
-
-                tr.cells[0].appendChild( document.createTextNode(item.word));
-                tr.cells[0].appendChild( getBreakdown(item.boldIndices));
+				var element = document.createElement('p');
+				element.innerHTML = ('<h3>' + item.word + '</h3>');
+                tr.cells[0].appendChild(element);
+                tr.cells[0].appendChild(getBreakdown(item.boldIndices));
 
                 var table = document.getElementById('response');
                 table.appendChild(tr);

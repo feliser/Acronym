@@ -30,7 +30,7 @@ public class AcronymService {
 				boldIndices.clear();
 				for (int i = 0; i < word.length(); i++) {
 					if (term + 1 < terms.size()) {
-							if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1 ) {
+						if (terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) != -1 ) {
 							searchIndex = terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) + 1;
 							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); 
 							letterIndex += terms.get(term + 1).length();
