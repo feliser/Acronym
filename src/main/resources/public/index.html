@@ -48,6 +48,9 @@
         </div>
       </div>
     </div>
+  	<div class="footer">
+  		<p>Copyright &copy 2019 by feliser</p>
+  	</div>
     
     <!-- jQuery, popper, bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -94,11 +97,10 @@
               object.response.forEach(function (item, index) {
                 var tr = document.createElement('tr');
                 tr.appendChild( document.createElement('td') );
-				var element = document.createElement('p');
-				element.innerHTML = ('<h3>' + item.word + '</h3>');
+				        var element = document.createElement('p');
+				        element.innerHTML = ('<h3>' + item.word + '</h3>');
                 tr.cells[0].appendChild(element);
                 tr.cells[0].appendChild(getBreakdown(item.boldIndices));
-
                 var table = document.getElementById('response');
                 table.appendChild(tr);
                 console.log(item);

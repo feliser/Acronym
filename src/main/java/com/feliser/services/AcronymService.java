@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class AcronymService {
 				int term = -1;
 				int searchIndex = 0;
 				int letterIndex = 0;
+				double score = 0;
 				boldIndices.clear();
 				for (int i = 0; i < word.length(); i++) {
 					if (term + 1 < terms.size()) {
@@ -34,6 +36,8 @@ public class AcronymService {
 							searchIndex = terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) + 1;
 							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); 
 							letterIndex += terms.get(term + 1).length();
+							score += terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) == -1 ? 0 : 3 + (0.05 * terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)));
+							System.out.println(score + " " + terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)));
 							term++;
 						} else if (term > -1) {
 							if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1 && term > -1) {
@@ -48,12 +52,13 @@ public class AcronymService {
 						} else { break; }
 					} else { break; }
 					if (i == word.length() - 1 && term == terms.size() - 1) {
-						acronyms.add(new Acronym(word, new ArrayList<Integer>(boldIndices)));
+						acronyms.add(new Acronym(word, new ArrayList<Integer>(boldIndices), score));
 						break;
 					}
 				}
 			}
 		} catch (Exception e) { e.printStackTrace(); }
+		Collections.sort(acronyms); // Orders acronyms by highest score first
 		return acronyms;
 	}
 }
