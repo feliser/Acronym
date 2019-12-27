@@ -2,39 +2,40 @@ html {
   overflow-y: scroll;
 }
 
-.header-card {
-  padding: 20px;
-  border-radius: 15px;
-  background-image: linear-gradient(orange, rgb(255, 140, 0));
-  border-width: 0px;
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: gray;
-  color: white;
-  text-align: center;
-  font-family: "Roboto", serif;
-  font-size: 16px;
-  font-weight: 700;
+footer {
+  background: #222;
+  color: #aaa;
+  padding-top: 10px;
+  display: table-row;
+  height: 0;
+}
+
+footer .copyright {
+  padding: 15px 0;
+  background: #333;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+footer .copyright span {
+  color: rgb(255, 140, 0);
 }
 
 .max-width {
   width: 100%
 }
 
-.header-card h1 {
+.container-header h1 {
   font-family: "Roboto", serif;
   font-size: 48px;
   font-weight: 700;
   color: white;
-}
-
-.header-container {
-  padding: 40px;
 }
 
 td {
@@ -68,6 +69,7 @@ td {
   color: white;
   font-family: "Roboto", sans-serif;
   border-radius: 15px;
+  width: 50%;
 }
 
 .btn_remove {

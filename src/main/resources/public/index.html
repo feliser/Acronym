@@ -15,30 +15,26 @@
     <title>Acronym Generator</title>
   </head>
   <body>
-    <div class="container-fluid text-center header-container">
-      <div class="card header-card">
+    <div class="jumbotron jumbotron-fluid jumbotron-header" style=background-image:linear-gradient(orange,rgb(255,140,0));>
+      <div class="container container-header text-center">
         <h1>Acronym Generator</h1>
       </div>
     </div>
-
     <div class="container-fluid text-center body-container">
       <div class="container text-center body-card-container">
         <div class="card body-card">
-          <h1> Add Terms </h1>
-
+          <h1> Add Terms </h1
           <form name="word-form" id="word-form" onsubmit="return validate();">
             <table class="table" id="dynamic-field">
               <tr>
                 <td class="max-width">
                   <input type="text" name="word" id="word" class="form-control word_list" placeholder="Term">
                 </td>
-
                 <td>
                   <button type="button" class="btn orange-button" name="add" id="add">Add Row</button>
                 </td>
               </tr>
             </table>
-
             <button type="button" class="btn orange-button" name="generate" id="generate"> Generate </button>
           </form>
         </div>
@@ -48,25 +44,23 @@
         </div>
       </div>
     </div>
-  	<div class="footer">
-  		<p>Copyright &copy 2019 by feliser</p>
-  	</div>
-    
+    <footer>
+      <div class="copyright text-center">
+        Copyright &copy; 2019 <span>feliser</span>
+      </div>
+    </footer>
     <!-- jQuery, popper, bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <script>
       var words = new Array();
       var request = '';
-
       function setCharAt(str,index,chr) {
         console.log(str + " " + index + " " + chr);
         if(index > str.length-1) return str;
         return str.substr(0,index) + chr.toUpperCase() + str.substr(index+1);
       }
-
       $(document).ready(function() {
         var rows = 1;
         $('#add').click(function() {
@@ -89,16 +83,16 @@
           });          
           var wordsJSON = "{\"request\": " + JSON.stringify(words) + "}";
           var xmlhttp = new XMLHttpRequest();
-		      xmlhttp.onreadystatechange = function() {
+		  xmlhttp.onreadystatechange = function() {
   		  	if (this.readyState == 4 && this.status == 200) {
-          		var object = JSON.parse(this.responseText);
+              var object = JSON.parse(this.responseText);
               $('#response-card').css('visibility', 'visible');
               var bold = document.createElement
               object.response.forEach(function (item, index) {
                 var tr = document.createElement('tr');
                 tr.appendChild( document.createElement('td') );
-				        var element = document.createElement('p');
-				        element.innerHTML = ('<h3>' + item.word + '</h3>');
+				var element = document.createElement('p');
+				element.innerHTML = ('<h3>' + item.word + '</h3>');
                 tr.cells[0].appendChild(element);
                 tr.cells[0].appendChild(getBreakdown(item.boldIndices));
                 var table = document.getElementById('response');
@@ -106,13 +100,12 @@
                 console.log(item);
               });
           	}
-		      };
-		      xmlhttp.open("POST", "generate", true);
-		      xmlhttp.setRequestHeader("Content-type", "application/json");
-		      xmlhttp.send(wordsJSON);
+		  };
+		  xmlhttp.open("POST", "generate", true);
+		  xmlhttp.setRequestHeader("Content-type", "application/json");
+		  xmlhttp.send(wordsJSON);
         });
       });
-
       function getBreakdown(boldIndices) {
         var element = document.createElement('p');
         var response = request;
@@ -123,7 +116,6 @@
         element.innerHTML = response;
         return element;
       }
-
     </script>
   </body>
 </html>
