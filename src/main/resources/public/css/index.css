@@ -6,6 +6,7 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
+  display: table;
 }
 
 footer {
@@ -69,7 +70,10 @@ td {
   color: white;
   font-family: "Roboto", sans-serif;
   border-radius: 15px;
-  width: 50%;
+}
+
+#generate {
+  margin: auto;
 }
 
 .btn_remove {

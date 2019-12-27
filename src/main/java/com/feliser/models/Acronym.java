@@ -40,7 +40,6 @@ public class Acronym implements Serializable, Comparable<Acronym> {
 	}
 
 	public int compareTo(Acronym a) {
-		System.out.println(score + " " + a.score + " " + Double.compare(score, a.score));
 		return Double.compare(score, a.score); // Compares score values of 2 acronyms
 	}
 }

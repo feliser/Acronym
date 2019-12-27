@@ -57,7 +57,6 @@
       var words = new Array();
       var request = '';
       function setCharAt(str,index,chr) {
-        console.log(str + " " + index + " " + chr);
         if(index > str.length-1) return str;
         return str.substr(0,index) + chr.toUpperCase() + str.substr(index+1);
       }
@@ -97,8 +96,16 @@
                 tr.cells[0].appendChild(getBreakdown(item.boldIndices));
                 var table = document.getElementById('response');
                 table.appendChild(tr);
-                console.log(item);
               });
+              if (object.response.length == 0) {
+                var tr = document.createElement('tr');
+                tr.appendChild( document.createElement('td') );
+				var element = document.createElement('p');
+				element.innerHTML = ('<h3>' + "No Acronyms Found" + '</h3>');
+                tr.cells[0].appendChild(element);
+                var table = document.getElementById('response');
+                table.appendChild(tr);
+              }
           	}
 		  };
 		  xmlhttp.open("POST", "generate", true);
@@ -110,8 +117,7 @@
         var element = document.createElement('p');
         var response = request;
         boldIndices.forEach(function (item, index) {
-          response = setCharAt(response, item + (7 * index), '<b>' + response.charAt(item + (7 * index)) + '</b>');
-          console.log(response);
+          response = setCharAt(response, item + (26 * index), '<font color=#FF750>' + response.charAt(item + (26 * index)) + '</font>');
         });
         element.innerHTML = response;
         return element;

@@ -37,7 +37,6 @@ public class AcronymService {
 							boldIndices.add(letterIndex + searchIndex - 1 + (term + 1)); 
 							letterIndex += terms.get(term + 1).length();
 							score += terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)) == -1 ? 0 : 3 + (0.05 * terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)));
-							System.out.println(score + " " + terms.get(term + 1).toUpperCase().indexOf(word.charAt(i)));
 							term++;
 						} else if (term > -1) {
 							if (terms.get(term).toUpperCase().indexOf(word.charAt(i), searchIndex) != -1 && term > -1) {
