@@ -48,17 +48,18 @@ td {
 }
 
 .body-container {
-  padding-left: 20px;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .body-card {
   font-family: "Roboto", sans-serif;
+  padding-bottom: 10px;
+  padding-top: 10px;
   background-color: #F3F5F8;
   border-width: 2px;
   border-radius: 7px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .orange-button {
