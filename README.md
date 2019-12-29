@@ -1,2 +1,2 @@
-# Acronym
-Acronym Generator
+# Acronym Creator
+View live site https://feliser.dev/acronym
