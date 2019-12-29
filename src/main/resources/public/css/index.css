@@ -47,18 +47,14 @@ td {
   visibility: hidden;
 }
 
-.body-card-container {
-  padding: 20px;
-}
-
 .body-container {
+  padding-left: 20px;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .body-card {
   font-family: "Roboto", sans-serif;
-  padding: 20px;
   background-color: #F3F5F8;
   border-width: 2px;
   border-radius: 7px;

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Description" content="Easily generate acronyms to help remember phrases or other groups of words. Great for studying or just create acronyms for fun">
+    <meta name="Description" content="Easily create acronyms to help remember phrases or other groups of words. Great for studying or just create acronyms for fun">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -13,15 +13,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <title>Acronym Generator</title>
+    <title>Acronym Creator</title>
   </head>
   <body>
     <div class="jumbotron jumbotron-fluid jumbotron-header" style=background-image:linear-gradient(orange,rgb(255,140,0));>
       <div class="container container-header text-center">
-        <h1>Acronym Generator</h1>
+        <h1>Acronym Creator</h1>
       </div>
     </div>
-    <div class="container-fluid text-center body-container">
+    <div class="text-center body-container">
       <div class="container text-center body-card-container">
         <div class="card body-card">
           <h1>Add Terms</h1>
@@ -63,9 +63,10 @@
       }
       $(document).ready(function() {
         var rows = 1;
+        addRow();
+        addRow();
         $('#add').click(function() {
-          rows++;
-          $('#dynamic-field').append('<tr id="row'+rows+'"><td><input type="text" name="word" id="word" class="form-control word_list" placeholder="Term"></td><td><button type="button" class="btn btn_danger btn_remove" name="remove" id="'+rows+'">Remove</button></td></tr>');
+          addRow();
         });
         $(document).on('click', '.btn_remove', function() {
           var button_id = $(this).attr("id");
@@ -113,6 +114,10 @@
 		  xmlhttp.setRequestHeader("Content-type", "application/json");
 		  xmlhttp.send(wordsJSON);
         });
+        function addRow() {
+          rows++;
+          $('#dynamic-field').append('<tr id="row'+rows+'"><td><input type="text" name="word" id="word" class="form-control word_list" placeholder="Term"></td><td><button type="button" class="btn btn_danger btn_remove" name="remove" id="'+rows+'">Remove</button></td></tr>');
+        }
       });
       function getBreakdown(boldIndices) {
         var element = document.createElement('p');
