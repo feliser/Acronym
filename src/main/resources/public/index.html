@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content="Easily generate acronyms to help remember phrases or other groups of words. Great for studying or just generate acronyms for fun">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="favicon.ico"/>
-
     <title>Acronym Generator</title>
   </head>
   <body>
@@ -19,7 +17,7 @@
       </div>
     </div>
     <div class="text-center container">
-    	<h5>Use Acronym Generator to turn a list of words or terms into an easy to remember <a href="https://en.wikipedia.org/wiki/Acronym">acronym</a>, or just generate acronyms for entertaintment purposes. To begin, just fill in the rows with your words and add/remove rows as you please. Every row will be represented at least once in the final acronym.</h5>
+    	<h5>Use Acronym Generator to turn a list of words or terms into an easy to remember <a href="https://en.wikipedia.org/wiki/Acronym">acronym</a>, or just generate acronyms for entertainment purposes. To begin, just fill in the rows with your words and add/remove rows as you please and press generate once you are ready. Every row will be represented at least once in the final acronym.</h5>
     	<br>
     </div>
     <div class="text-center body-container">
@@ -55,6 +53,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="js/index.js"></script>
+    <script>
+   		var words=new Array,request="";function setCharAt(e,t,n){return t>e.length-1?e:e.substr(0,t)+n.toUpperCase()+e.substr(t+1)}function getBreakdown(e){var t=document.createElement("p"),n=request;return e.forEach(function(e,t){n=setCharAt(n,e+26*t,"<font color=#FF750>"+n.charAt(e+26*t)+"</font>")}),t.innerHTML=n,t}$(document).ready(function(){var e=1;function t(){e++,$("#dynamic-field").append('<tr id="row'+e+'"><td><input type="text" name="word" id="word" class="form-control word_list" placeholder="Term"></td><td><button type="button" class="btn btn_danger btn_remove" name="remove" id="'+e+'">Remove</button></td></tr>')}t(),t(),$("#add").click(function(){t()}),$(document).on("click",".btn_remove",function(){var e=$(this).attr("id");$("#row"+e).remove()}),$("#generate").click(function(){document.getElementById("response").textContent="",request="",words=[],$("input").each(function(e){""!=$(this).val()&&(words.push($(this).val()),request+=$(this).val()+" ")});var e='{"request": '+JSON.stringify(words)+"}",t=new XMLHttpRequest;t.onreadystatechange=function(){if(4==this.readyState&&200==this.status){var e=JSON.parse(this.responseText);$("#response-card").css("visibility","visible");document.createElement;if(e.response.forEach(function(e,t){var n=document.createElement("tr");n.appendChild(document.createElement("td"));var r=document.createElement("p");r.innerHTML="<h3>"+e.word+"</h3>",n.cells[0].appendChild(r),n.cells[0].appendChild(getBreakdown(e.boldIndices)),document.getElementById("response").appendChild(n)}),0==e.response.length){var t=document.createElement("tr");t.appendChild(document.createElement("td"));var n=document.createElement("p");n.innerHTML="<h3>No Acronyms Found</h3>",t.cells[0].appendChild(n),document.getElementById("response").appendChild(t)}}},t.open("POST","generate",!0),t.setRequestHeader("Content-type","application/json"),t.send(e)})});
+    </script>
   </body>
 </html>
