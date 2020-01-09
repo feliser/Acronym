@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="iso-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="Description" content="Easily generate acronyms to help remember phrases or other groups of words. Great for studying or just generate acronyms for fun">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="shortcut icon" href="favicon.ico"/>
-    <title>Acronym Generator</title>
+    <title>Acronym Generator - Create Acronyms For Free</title>
   </head>
   <body>
     <div class="jumbotron jumbotron-fluid jumbotron-header" style=background-image:linear-gradient(orange,rgb(255,140,0));>
       <div class="container container-header text-center">
-        <h1>Acronym Generator</h1>
+        <h1>Free Acronym Generator</h1>
       </div>
     </div>
     <div class="text-center container">
-    	<h5>Use Acronym Generator to turn a list of words or terms into an easy to remember <a href="https://en.wikipedia.org/wiki/Acronym">acronym</a>, or just generate acronyms for entertainment purposes. To begin, just fill in the rows with your words and add/remove rows as you please and press generate once you are ready. Every row will be represented at least once in the final acronym.</h5>
+    	<p>Use Free Acronym Generator to turn a list of words or terms into easy to remember <a href="https://en.wikipedia.org/wiki/Acronym">acronyms</a>, or just generate acronyms for fun. To begin, fill in the rows with words, add/remove rows as necessary, and press generate to create a bunch of suggested acronyms. Every row will be represented at least once in the final acronym. Please note that the more terms you use, there will likely be less suggestions.</p>
     	<br>
     </div>
     <div class="text-center body-container">
       <div class="container text-center body-card-container">
         <div class="card body-card">
-          <h1>Add Terms</h1>
+          <h2>Add Terms</h2>
           <form name="word-form" id="word-form" onsubmit="return validate();">
             <table class="table" id="dynamic-field">
               <tr>
@@ -39,14 +39,14 @@
           </form>
         </div>
         <div class="card body-card" id="response-card">
-          <h1>Best Suggestions</h1>
+          <h2>Best Suggestions</h2>
           <table class="table" id="response"></table>
         </div>
       </div>
     </div>
     <footer>
       <div class="copyright text-center">
-        Copyright &copy; 2020 <span><a href="https://github.com/feliser">feliser</a></span>
+        <a href="https://www.feliser.dev">Home</a>   |   Copyright &copy; 2020 <span><a href="https://github.com/feliser">feliser</a></span>
       </div>
     </footer>
     <!-- jQuery, popper, bootstrap -->
