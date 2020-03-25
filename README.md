@@ -1,2 +1,2 @@
 # Acronym Creator
-View live site https://feliser.dev/acronym
+View live site https://projects.feliser.dev/acronym
