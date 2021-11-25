@@ -23,6 +23,13 @@ public class AcronymService {
 		ArrayList<Integer> boldIndices = new ArrayList<Integer>(); 
 		BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("words/corncob_caps.txt")));
 		String word;
+		
+		// weed out ridiculous requests
+		if(terms.size() > 20) return acronyms;
+		for(int i = 0; i < terms.size(); i++) {
+			if(terms.get(i).length() > 50) return acronyms;
+		}
+		
 		try {
 			while ((word = br.readLine()) != null) {
 				int term = -1;
@@ -58,6 +65,10 @@ public class AcronymService {
 			}
 		} catch (Exception e) { e.printStackTrace(); }
 		Collections.sort(acronyms); // Orders acronyms by highest score first
+		
+		// Truncate response
+		if(acronyms.size()>10) {
+			acronyms.subList(10, acronyms.size()).clear(); }
 		return acronyms;
 	}
 }
